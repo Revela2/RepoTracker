@@ -8,6 +8,14 @@ $(document).ready(function () {
             return;
         }
 
+        $.get("https://api.github.com/users/" + usr , function(data){
+            $("#FollowNumber").text("Number of followers: "+data.followers);
+
+        })
+            .fail(function() {
+                $("#FollowNumber").text("Error getting followers");
+            })
+
         $.get("https://api.github.com/users/" + usr + "/repos", function (data) {
             if (data.length === 0) {
                 alert("There are no public repos for this user");
